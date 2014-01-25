@@ -4,7 +4,7 @@ class PostsController < ApplicationController
     @post = Post.new
   end
   def create
-    @post = Post.new(post_params)
+     @post = Post.new(params[:post].permit(:title, :text))
     if @post.save
       redirect_to @post
     else
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-      redirect_to posts_path
+    redirect_to posts_path
   end
   private
     def post_params
