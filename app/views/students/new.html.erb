@@ -1,26 +1,38 @@
 <h1>Add Student</h1>
- 
+  <% if flash[:notice] %>
+<h1><div class="notice"><%= flash[:notice] %></div></h1>
+  <% end %>
 <%= form_for @student do |f| %>
   <p>
     <%= f.label :Firstname %><br>
-    <%= f.text_field :fname %>
+    <%= f.text_field :first_name %>
   </p>
 
   <p>
     <%= f.label :Lastname %><br>
-    <%= f.text_field :lname %>
+    <%= f.text_field :last_name %>
   </p>
 
   <p>
     <%= f.label :NickName %><br>
-    <%= f.text_field :nname %>
+    <%= f.text_field :nick_name %>
   </p>
 
   <p>
     <%= f.label :Email %><br>
     <%= f.text_field :email %>
   </p>
- 
+
+  <p>
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>
+  </p>
+
+  <p>
+    <%= f.label :password_confirmation %><br>
+    <%= f.password_field :password_confirmation %>
+  </p>
+
   <p>
     <%= f.submit %>
   </p>

@@ -1,4 +1,4 @@
 class Student < ActiveRecord::Base
-  def new
-  end
+  has_secure_password
+  validates_presence_of :password, :on => :create
 end

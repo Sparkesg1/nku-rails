@@ -3,7 +3,9 @@ NkuRails::Application.routes.draw do
   get "students/index"
   get "students/new"
   get "students/edit"
-  resources :students
+  get "sessions/index"
+  get "sessions/new"
+  resources :sessions, :students
  
-  root to: "students#index"
+  root to: "sessions#index"
 end
