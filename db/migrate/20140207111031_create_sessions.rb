@@ -1,4 +1,4 @@
-class CreateSesssions < ActiveRecord::Migration
+class CreateSessions < ActiveRecord::Migration
   def change
     create_table :current_users do |t|
       t.string :email

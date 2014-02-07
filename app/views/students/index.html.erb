@@ -1,6 +1,6 @@
 <h1>Listing Students</h1>
   <% if flash[:notice] %>
-<h1><div class="notice"><%= flash[:notice] %></div></h1>
+    <h1><div class="notice"><%= flash[:notice] %></div></h1>
   <% end %>
 <% @current = current_user %>
 <% if @current == nil %>
@@ -37,7 +37,8 @@
   </tr>
 
   <tr>
-    <td> <% if @current.email && student.email == current_user.email %>
+    <td> 
+      <% if @current == student.email %>
       <%= link_to 'Edit Profile', edit_student_path(student) %>
     </td>
     <td> 

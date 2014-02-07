@@ -24,4 +24,6 @@ end
 group :test do
   gem 'rspec-rails'
 gem "bcrypt-ruby", :require => "bcrypt"
+
+gem 'factory_girl_rails'
 end
