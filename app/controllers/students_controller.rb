@@ -8,7 +8,7 @@ class StudentsController < ApplicationController
   end
   
   def create
-    @student = Student.new(params[:student].permit(student_params))
+    @student = Student.new(params[:student].permit(:first_name, :last_name, :nick_name, :email, :password, :password_confirmation))
     if @student.save
       session[:user_id] = @student.id
       redirect_to students_path, :notice => "You have signed up."
@@ -32,7 +32,7 @@ class StudentsController < ApplicationController
   def update
     @student = Student.find(params[:id])
  
-    if @student.update(params[:student].permit(student_params))
+    if @student.update(params[:student].permit(:first_name, :last_name, :nick_name, :email, :password, :password_confirmation))
       flash[:notice] = "You have successfully updated a student"
       redirect_to @student
     else
