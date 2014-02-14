@@ -15,11 +15,10 @@ ActiveRecord::Schema.define(version: 20140214084314) do
 
   create_table "attendances", force: true do |t|
     t.date     "attended_on"
-    t.datetime "now"
     t.integer  "seat"
+    t.integer  "student_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "student_id"
   end
 
   create_table "current_users", force: true do |t|
