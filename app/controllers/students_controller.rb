@@ -46,8 +46,8 @@ class StudentsController < ApplicationController
     flash[:notice] = "You have successfully deleted a student"
     
     session[:user_id] = nil
-    @current_user = nil
-    redirect_to students_path
+    @current = nil
+    redirect_to sessions_path
   end
 private
   def student_params

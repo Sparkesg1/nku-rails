@@ -9,27 +9,30 @@
 <% else %>
   <h4><%= @current.email %></h4>
   <%= link_to "Sign out", session_path(session), method: :delete, data: { confirm: 'Are you sure you want to sign out?' } %>
+  <h3><%= link_to "I'm Here", new_attendance_path %></h3>
 <% end %>
 
 <table>
-
-<td><%= link_to 'Add Another Student', new_student_path %><td> 
-  <% @student.each do |student| %>
+  <tr>  
+    
+  </tr>
+    <td><%= link_to 'Add Another Student', new_student_path %><td>
+    <% @student.each do |student| %>
   <tr>
-    <th  colspan="3">
+    <th colspan="3">
       <%= gravatar_image_tag( student.email ) %>
-    </th> 
+    </th>
   <tr>
     <th>First Name</th>
     <td><%= student.first_name %></td>
   </tr>
   <tr>
     <th>Last Name</th>
-    <td><%= student.last_name %></td>    
+    <td><%= student.last_name %></td>
   </tr>
   <tr>
     <th>Nick Name</th>
-    <td><%= student.nick_name %></td>    
+    <td><%= student.nick_name %></td>
   </tr>
   <tr>
     <th>E-mail</th>
@@ -37,11 +40,11 @@
   </tr>
 
   <tr>
-    <td> 
-      <% if @current == student.email %>
+    <td>
+      <% if current_user && current_user.id  == student.id %>
       <%= link_to 'Edit Profile', edit_student_path(student) %>
     </td>
-    <td> 
+    <td>
       <%= link_to 'Delete Profile', students_path(student), method: :delete, data: { confirm: 'Are you sure?' } %>
     </td>
     <% end %>

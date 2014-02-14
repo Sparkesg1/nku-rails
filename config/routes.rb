@@ -1,10 +1,6 @@
 NkuRails::Application.routes.draw do
- 
-  get "students/index"
-  get "students/new"
-  get "students/edit"
-  get "sessions/index"
-  resources :sessions, :students
+
+  resources :sessions, :students, :attendances
  
   root to: "students#index"
 end
