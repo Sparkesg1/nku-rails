@@ -10,87 +10,70 @@
   <h4><%= @current.email %></h4>
   <%= link_to "Sign out", session_path(session), method: :delete, data: { confirm: 'Are you sure you want to sign out?' } %>
   <h3><%= link_to "I'm Here", new_attendance_path %></h3>
-<% end %>
 
-<% @seatOne = Student.in_seat(1, Date.today) %>
-<% @seatTwo = Student.in_seat(2, Date.today) %>
-<% @seatThree = Student.in_seat(3, Date.today) %>
-<% @seatFour = Student.in_seat(4, Date.today) %>
-<% @absentStudents = Student.absent(Date.today) %>
+<% end %>
+<center>
 <table>
   <tr>
-    <td> Seat 1 </td>
-    <td> Seat 2 </td>
+    <td colspan=2>
+      Students in Attendance Today(<%= Date.today %>)
+    </td>
+  </tr>
+  <tr>
+    <td><h3>Seat 1</h3></td>
+    <td><h3>Seat 2</h3></td>  
   </tr>
 
   <tr>
     <td>
-      <% @seatOne.each do |s1| %>
-        <%= gravatar_image_tag( s1.email ) %> 
-        <%= s1.first_name %>
+      <% Student.in_seat(1, Date.today).each do |student| %>
+        <%= gravatar_image_tag( student.email ) %> 
+      <br>
+        <%= student.nick_name %>
       <% end %>
     </td>
     <td>
-      <% @seatTwo.each do |s2| %>
-        <%= gravatar_image_tag( s2.email ) %> 
-        <%= s2.first_name %>
+      <% Student.in_seat(2, Date.today).each do |student| %>
+        <%= gravatar_image_tag( student.email ) %> 
+      <br>
+        <%= student.nick_name %>
       <% end %>
     </td>
   </tr>
   <tr>
+    <td><h3>Seat 3</h3></td>
+    <td><h3>Seat 4</h3></td>
+  </tr>
+  <tr>
     <td>
-      <% @seatThree.each do |s3| %>
-        <%= gravatar_image_tag( s3.email ) %> 
-        <%= s3.first_name %>
+      <% Student.in_seat(3, Date.today).each do |student| %>
+        <%= gravatar_image_tag( student.email ) %> 
+      <br>
+        <%= student.nick_name %>
       <% end %>
     </td>
     <td>
-      <% @seatFour.each do |s4| %>
-        <%= gravatar_image_tag( s4.email ) %> 
-        <%= s4.first_name %>
+      <% Student.in_seat(4, Date.today).each do |student| %>
+        <%= gravatar_image_tag( student.email ) %> 
+      <br>
+        <%= student.nick_name %>
       <% end %>
     </td>
   </tr>
 </table>
+  <tr>
+    <th>Nickname</th>
+    <th>Email</th>
+  </tr>
 <table>
-  <tr>  
+<% Student.absent(Date.today).each do |student| %>
+  <tr>
+    <td><%= gravatar_image_tag( student.email ) %></td>
+    <td><%= student.nick_name %></td>
+    <td><%= student.email %></td>
     
   </tr>
-    <td><%= link_to 'Add Another Student', new_student_path %><td>
-    <% @student.each do |student| %>
-  <tr>
-    <th colspan="3">
-      <%= gravatar_image_tag( student.email ) %>
-    </th>
-  <tr>
-    <th>First Name</th>
-    <td><%= student.first_name %></td>
-  </tr>
-  <tr>
-    <th>Last Name</th>
-    <td><%= student.last_name %></td>
-  </tr>
-  <tr>
-    <th>Nick Name</th>
-    <td><%= student.nick_name %></td>
-  </tr>
-  <tr>
-    <th>E-mail</th>
-    <td><%= student.email %></td>
-  </tr>
+ <% end %> 
 
-  <tr>
-    <td>
-      <% if current_user && current_user.id  == student.id %>
-      <%= link_to 'Edit Profile', edit_student_path(student) %>
-    </td>
-    <td>
-      <%= link_to 'Delete Profile', students_path(student), method: :delete, data: { confirm: 'Are you sure?' } %>
-    </td>
-    <% end %>
-  </tr>
-  <tr>
-
-  </tr>
-  <% end %>
 </table>
+</center>
