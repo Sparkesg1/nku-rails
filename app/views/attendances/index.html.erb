@@ -1,0 +1,26 @@
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
+<% @current = current_user %>
+
+<h1>Attendances</h1>
+
+<table>
+  <tr>
+    <th>First Name:</th>
+    <th>Last Name:</th>
+    <th>Attended On:</th>
+    <th>Seat:</th>
+  </tr>
+  
+  <% @attendances.each do |attendance| %>
+      <tr>
+        <td><%= @current.first_name %></td>        
+        <td><%= @current.last_name %></td>
+        <td><%= attendance.attended_on %></td>
+        <td><%= attendance.seat %></td>
+      </tr>
+  <% end %>
+</table>
+<%= link_to 'Students', students_path %>
