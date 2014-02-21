@@ -11,6 +11,9 @@
   <%= link_to "Sign out", session_path(session), method: :delete, data: { confirm: 'Are you sure you want to sign out?' } %>
   <br>
   <%= link_to 'Add Another Student', new_student_path %>
+  <br>
+  <%= link_to "I'm here!", new_attendance_path %>
+
 <% end %>
 <center>
 <table>
@@ -23,7 +26,7 @@
     <td><h3>Seat 1</h3></td>
     <td><h3>Seat 2</h3></td>  
   </tr>
-
+  <p>
   <tr>
     <td>
       <% Student.in_seat(1, Date.today).each do |student| %>
@@ -39,8 +42,9 @@
         <%= student.nick_name %>
       <% end %>
     </td>
+
   </tr>
-  
+  </p>  
   <tr>
     <td><h3>Seat 3</h3></td>
     <td><h3>Seat 4</h3></td>
@@ -71,7 +75,7 @@
     <th>Email</th>
   </tr>
 
-<% Student.absent(Date.today).each do |student| %>
+<% Student.absent(Date.today).each do |s| %>
   <tr>
     <td><%= gravatar_image_tag( student.email ) %></td>
     <td><%= student.nick_name %></td>
@@ -87,7 +91,7 @@
     
   </tr>
 
-    <% @student.each do |student| %>
+     <% @student.each do |student| %>
   <tr>
     <th colspan="3">
       <%= gravatar_image_tag( student.email ) %>
