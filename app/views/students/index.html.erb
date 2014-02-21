@@ -12,6 +12,46 @@
   <h3><%= link_to "I'm Here", new_attendance_path %></h3>
 <% end %>
 
+<% @seatOne = Student.in_seat(1, Date.today) %>
+<% @seatTwo = Student.in_seat(2, Date.today) %>
+<% @seatThree = Student.in_seat(3, Date.today) %>
+<% @seatFour = Student.in_seat(4, Date.today) %>
+<% @absentStudents = Student.absent(Date.today) %>
+<table>
+  <tr>
+    <td> Seat 1 </td>
+    <td> Seat 2 </td>
+  </tr>
+
+  <tr>
+    <td>
+      <% @seatOne.each do |s1| %>
+        <%= gravatar_image_tag( s1.email ) %> 
+        <%= s1.first_name %>
+      <% end %>
+    </td>
+    <td>
+      <% @seatTwo.each do |s2| %>
+        <%= gravatar_image_tag( s2.email ) %> 
+        <%= s2.first_name %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <% @seatThree.each do |s3| %>
+        <%= gravatar_image_tag( s3.email ) %> 
+        <%= s3.first_name %>
+      <% end %>
+    </td>
+    <td>
+      <% @seatFour.each do |s4| %>
+        <%= gravatar_image_tag( s4.email ) %> 
+        <%= s4.first_name %>
+      <% end %>
+    </td>
+  </tr>
+</table>
 <table>
   <tr>  
     
