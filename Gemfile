@@ -17,6 +17,8 @@ gem 'sass-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+gem "twitter-bootstrap-rails", "~> 2.2.8"
+
 group :development, :test do
   gem 'byebug'
 end

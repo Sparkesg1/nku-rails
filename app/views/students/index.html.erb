@@ -10,12 +10,13 @@
   <h1><div class="notice"><%= flash[:notice] %></div></h1>
 <% end %>
 
-<h4><%= link_to 'View all Attendances', attendances_path %></h4>
+<%= link_to 'View all Attendances', attendances_path %>
 <% @current = current_user %>
 <% if @current == nil %>
 
-<h4><%= link_to 'Sign up', new_student_path %></h4>
-<h4><%= link_to 'Sign in', sessions_path %></h4>
+  <h4><%= link_to 'Sign up', new_student_path %></h4>
+  <h4><%= link_to 'Sign in', sessions_path %></h4>
+
 
 <% else %>
   <h4><%= @current.email %></h4>
@@ -26,6 +27,8 @@
   <%= link_to "I'm here!", new_attendance_path %>
   <br>
   <%= link_to 'Edit Profile', edit_student_path(@current.id) %>
+  <br>
+
 <% end %>
 
 <center>
