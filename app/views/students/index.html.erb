@@ -1,4 +1,9 @@
 <h1>Listing Students</h1>
+<h3>(YYYY-MM-DD)</h3>
+<%= form_tag( students_path, method: 'get') do %>
+  <%= date_field_tag( 'selected_date', @selected_date ) %>
+  <%= submit_tag "View Attendance" %>
+<% end %>
 
 <% if flash[:notice] %>
   <h1><div class="notice"><%= flash[:notice] %></div></h1>
@@ -25,7 +30,7 @@
 <table>
   <tr>
     <td colspan=2>
-      <h2>Students in Attendance Today(<%= Date.today %>)</h2>
+      <h2>Students in Attendance Today(<%= @selected_date %>)</h2>
     </td>
   </tr>
   <tr>
@@ -35,14 +40,14 @@
   <p>
   <tr>
     <td>
-      <% Student.in_seat(1, Date.today).each do |student| %>
+      <% Student.in_seat(1, @selected_date).each do |student| %>
         <%= gravatar_image_tag( student.email ) %> 
       <br>
         <%= student.nick_name %>
       <% end %>
     </td>
     <td>
-      <% Student.in_seat(2, Date.today).each do |student| %>
+      <% Student.in_seat(2, @selected_date).each do |student| %>
         <%= gravatar_image_tag( student.email ) %> 
       <br>
         <%= student.nick_name %>
@@ -58,14 +63,14 @@
   
   <tr>
     <td>
-      <% Student.in_seat(3, Date.today).each do |student| %>
+      <% Student.in_seat(3, @selected_date).each do |student| %>
         <%= gravatar_image_tag( student.email ) %> 
       <br>
         <%= student.nick_name %>
       <% end %>
     </td>
     <td>
-      <% Student.in_seat(4, Date.today).each do |student| %>
+      <% Student.in_seat(4, @selected_date).each do |student| %>
         <%= gravatar_image_tag( student.email ) %> 
       <br>
         <%= student.nick_name %>
@@ -73,7 +78,7 @@
     </td>
   </tr>
 </table>
-  <h2>Students that are absent today( <%= Date.today %> )</h2>
+  <h2>Students that are absent today( <%= @selected_date %> )</h2>
 <table>
   <tr>
     <th></th>
@@ -81,7 +86,7 @@
     <th>Email</th>
   </tr>
 
-<% Student.absent(Date.today).each do |student| %>
+<% Student.absent(@selected_date).each do |student| %>
   <tr>
     <td><%= gravatar_image_tag( student.email ) %></td>
     <td><%= student.nick_name %></td>

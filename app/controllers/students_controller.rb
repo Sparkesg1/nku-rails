@@ -1,6 +1,7 @@
 class StudentsController < ApplicationController
   def index
     @student = Student.all
+    @selected_date = params[:selected_date] || Date.today
   end
 
   def new
