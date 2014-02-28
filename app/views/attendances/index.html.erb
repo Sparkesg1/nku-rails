@@ -16,8 +16,8 @@
   
   <% @attendances.each do |attendance| %>
       <tr>
-        <td><%= @current.first_name %></td>        
-        <td><%= @current.last_name %></td>
+        <td><%= attendance.student.first_name %></td>        
+        <td><%= attendance.student.last_name %></td>
         <td><%= attendance.attended_on %></td>
         <td><%= attendance.seat %></td>
       </tr>

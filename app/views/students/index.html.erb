@@ -9,6 +9,7 @@
   <h1><div class="notice"><%= flash[:notice] %></div></h1>
 <% end %>
 
+<h4><%= link_to 'View all Attendances', attendances_path %></h4>
 <% @current = current_user %>
 <% if @current == nil %>
 
