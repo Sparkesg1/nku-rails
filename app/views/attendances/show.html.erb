@@ -2,7 +2,9 @@
 <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
 
-<% @current = current_user %>
+<%= link_to 'All attendances', attendances_path %>
+<br>
+<%= link_to 'Back to Students', students_path %>
 
 <h1>Attendances</h1>
 
@@ -20,5 +22,5 @@
         <td><%= attendance.seat %></td>
       </tr>
   <% end %>
-  <%= link_to 'All attendances', attendances_path %>
+
 </table>
