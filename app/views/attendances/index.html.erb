@@ -2,8 +2,6 @@
   <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
 
-<% @current = current_user %>
-
 <h1>Attendances</h1>
 
 <table>
@@ -16,7 +14,7 @@
   
   <% @attendances.each do |attendance| %>
       <tr>
-        <td><%= attendance.student.first_name %></td>        
+        <td><%= link_to( attendance.student.first_name, attendance_path( attendance.student ) ) %></td>
         <td><%= attendance.student.last_name %></td>
         <td><%= attendance.attended_on %></td>
         <td><%= attendance.seat %></td>

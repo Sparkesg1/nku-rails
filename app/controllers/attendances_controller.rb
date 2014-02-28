@@ -1,6 +1,11 @@
 class AttendancesController < ApplicationController
   def index
-    @attendances = Attendance.all
+    if( params[:student_id] )      
+      @selected_student = Student.find( params[:student_id] )
+      @attendances = Attendance.where( student: @selected_student )
+    else
+      @attendances = Attendance.all
+    end
   end
   
   def new
@@ -26,8 +31,7 @@ class AttendancesController < ApplicationController
       render "new"
     end
   end
-  
   def show
-    @attendance = Attendance.find(params[:id])
+    @attendances = Attendance.where("student_id = ?", params[:id])
   end
 end
