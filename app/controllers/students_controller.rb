@@ -28,6 +28,9 @@ class StudentsController < ApplicationController
 
   def edit
     @student = Student.find(params[:id])
+    if @student != @current_user
+      redirect_to edit_student_path(@current_user)
+    end
 
   end
 
