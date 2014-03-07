@@ -1,7 +1,5 @@
 <%= form_for @attendance do |f| %>
-  <p>
-    <%= link_to "View Attendance", attendances_path %>
-  </p>
+
   <% @current = current_user %>
   <%= @current.email %>
    <% if @attendance.errors.any? %>
