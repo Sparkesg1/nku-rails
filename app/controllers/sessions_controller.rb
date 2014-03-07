@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 
-  skip_before_action :require_login, only: [:index, :login]
+  skip_before_action :require_login, only: [:index, :create, :new]
 
   def new
   end
@@ -19,5 +19,9 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     redirect_to students_path, :notice => "Logged out!"
+  end
+  
+  def show
+    redirect_to sessions_path
   end
 end
