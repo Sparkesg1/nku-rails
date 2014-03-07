@@ -65,7 +65,7 @@
     <td><h3>Seat 3</h3></td>
     <td><h3>Seat 4</h3></td>
   </tr>
-  
+
   <tr>
     <td>
       <% Student.in_seat(3, @selected_date).each do |student| %>
@@ -91,6 +91,7 @@
     <th>Email</th>
   </tr>
 
+  
 <% Student.absent(@selected_date).each do |student| %>
   <tr>
     <td><%= gravatar_image_tag( student.email ) %></td>
@@ -100,4 +101,3 @@
  <% end %> 
 
 </table>
-</center>

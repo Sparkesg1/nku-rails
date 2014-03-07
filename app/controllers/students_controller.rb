@@ -1,4 +1,7 @@
 class StudentsController < ApplicationController
+  
+  skip_before_action :require_login, only: [:new, :create]
+
   def index
     @student = Student.all
     @selected_date = params[:selected_date] || Date.today

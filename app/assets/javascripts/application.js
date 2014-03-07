@@ -13,3 +13,22 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawStudentChart(absentCount, presentCount) {
+        var data = google.visualization.arrayToDataTable([
+          ['Absent/Present', 'Percentage'],
+          ['Absent',    absentCount],
+          ['Present',   presentCount],
+
+        ]);
+
+        var options = {
+          title: 'Attendances Pie Chart'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+      }
+    </script>
