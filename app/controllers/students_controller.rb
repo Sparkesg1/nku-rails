@@ -23,9 +23,7 @@ class StudentsController < ApplicationController
   end
   
   def show
-    @student = Student.find(params[:id])
-    @current = current_user
-    redirect_to students_path
+    @student = Student.all
   end
 
   def edit
