@@ -1,6 +1,13 @@
 class AssignmentsController < ApplicationController
   def new
+    # Allows admins to create new assignments
+    @current_student = get_current_student
+    if( !@current_student.is_admin? )
+      redirect_to students_path, notice: "Unauthorized!"
+    end
+    
     @assignment = Assignment.new
+    @students = Student.all
   end
   
   def create
