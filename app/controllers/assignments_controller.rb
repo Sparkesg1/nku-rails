@@ -14,9 +14,8 @@ class AssignmentsController < ApplicationController
       end
       
     else
-      @selected_student = @current_student
       @assignments = @current_student.assignments
-      @average = Assignment.average_percentage(@selected_student.id)
+      @average = Assignment.average_percentage(@current_student.id)
     end
   end
   
@@ -47,7 +46,7 @@ class AssignmentsController < ApplicationController
   
   private
   def assignment_params
-    params.require(:assignment).permit(:id, :name, :score, :total)
+    params.require(:assignment).permit(:id, :assignment_name, :score, :total, :student_id, :nick_name)
   end
   
 end
