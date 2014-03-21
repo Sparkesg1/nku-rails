@@ -8,25 +8,25 @@
 
 <h1>
   <% if @selected_student %>
-    <%= @selected_student.nickname %>'s Assignments
+    <%= @selected_student.nick_name %>'s Assignments
   <% else %>
     All assignments
   <% end %>
 </h1>
 <table>
   
-    <th>
+    <tr>
       <td>Student</td>
       <td>Assignment</td>
       <td>Score</td>
       <td>Total</td>
       <td>Percentage</td>
-    </th>
+    </tr>
   
   <% @assignments.each do |assignment| %>
     <tr>
-      <td><%= assignment.student.name %></td>
-      <td><%= assignment.name %></td>
+      <td><%= assignment.student.nick_name %></td>
+      <td><%= assignment.assignment_name %></td>
       <td><%= assignment.score %></td>
       <td><%= assignment.total %></td>
       <td><%= assignment.percentage %>%</td>
