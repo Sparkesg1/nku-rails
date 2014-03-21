@@ -1,0 +1,19 @@
+<% @student.each do |student| %>
+<table>
+  <tr>
+    <td></td>
+    <td>First Name</td>
+    <td>Last Name</td>
+    <td>Nick Name</td>
+    <td>Email</td>
+  </tr>
+  <tr>
+    <td><%= gravatar_image_tag( student.email ) %></td>
+    <td><%= student.first_name %></td>
+    <td><%= student.last_name %></td>
+    <td><%= student.nick_name %></td>
+    <td><%= student.email %></td>
+    <br>
+  </tr>
+</table>
+ <% end %> 
