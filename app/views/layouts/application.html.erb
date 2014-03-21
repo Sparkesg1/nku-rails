@@ -24,9 +24,11 @@
       <% if current_user %>
         <p class="navbar-text current-student hello-text">
           Hi <%= current_user.first_name %>! <%= link_to 'Edit Profile', edit_student_path(current_user)%>
+             <%= link_to "Assignments", assignments_path, class: "btn btn-primary navbar-btn" %>
         </p>
         <%= link_to "Sign out", session_path(session), method: :delete, data: { confirm: 'Are you sure you want to sign out?' }, class: "btn btn-default navbar-btn"%>
         <%= link_to "I'm here", new_attendance_path, class: "btn btn-primary navbar-btn" %>
+
       <% else %>
         <%= link_to "Sign up", new_student_path, class: "btn btn-default navbar-btn" %>
         <%= link_to "Sign in", new_session_path, class: "btn btn-primary navbar-btn" %>

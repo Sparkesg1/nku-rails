@@ -6,6 +6,7 @@ class CreateStudents < ActiveRecord::Migration
       t.string :nick_name
       t.string :email
       t.string :password_digest
+      t.boolean  :is_admin
 
       t.timestamps
     end
