@@ -7,16 +7,17 @@ class AssignmentsController < ApplicationController
       if( params[:student_id] )
         @selected_student = Student.find(params[:student_id])
         @assignments = @selected_student.assignments
+        @average = Assignment.average_percentage(params[:student_id])
       else
         @assignments = Assignment.all
+        @average = Assignment.average_percentage
       end
       
     else
-      @selected_student = @current_user
+      @selected_student = @current_student
       @assignments = @current_student.assignments
-      
+      @average = Assignment.average_percentage(@selected_student.id)
     end
-    
   end
   
   def new
@@ -38,7 +39,7 @@ class AssignmentsController < ApplicationController
     
     @assignment = Assignment.new(assignment_params)
     if @assignment.save
-      redirect_to assignments_path, notice: "Assignment successfully recorded!"
+
     else
       render 'new'
     end
