@@ -9,7 +9,28 @@
 <h1>
   <% if @selected_student %>
     <%= @selected_student.nick_name %>'s Assignments
+  <table>
+  
+    <tr>
+      <td>Student</td>
+      <td>Assignment</td>
+      <td>Score</td>
+      <td>Total</td>
+      <td>Percentage</td>
+    </tr>
+  
+  <% @assignments.each do |assignment| %>
+    <tr>
+      <td><%= assignment.student.nick_name %></td>
+      <td><%= assignment.assignment_name %></td>
+      <td><%= assignment.score %></td>
+      <td><%= assignment.total %></td>
+      <td><%= assignment.percentage %>%</td>
+    </tr>
 
+  <% end %>
+
+</table>
   <% else %>
     All assignments
   <table>
