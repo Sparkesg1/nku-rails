@@ -6,13 +6,20 @@ class Assignment < ActiveRecord::Base
   end
   
   def self.average_percentage(student_id=nil)
-    totals = 0
-    scores = 0
-    Assignment.all.each do |assignment|
-      scores = scores + assignment.score
-      totals = totals + assignment.total
-      
+
+    if( student_id )
+      assignments = Student.find(student_id).assignments
+    else
+      assignments = all
     end
-    (average_percentage = (scores.to_f / totals) *100).round
+
+    percentage_sum = 0
+    assignments.each{ |a| percentage_sum += a.percentage }
+    if(assignments.size != 0)
+      percentage_sum / assignments.size
+    else
+      return 0
+    end
+    
   end
 end

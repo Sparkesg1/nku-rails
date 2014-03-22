@@ -1,4 +1,8 @@
 class AssignmentsController < ApplicationController
+  def show
+    redirect_to assignments_path
+  end
+  
   def index
     @current_student = current_user
     @students = Student.all
@@ -10,7 +14,7 @@ class AssignmentsController < ApplicationController
         @average = Assignment.average_percentage(params[:student_id])
       else
         @assignments = Assignment.all
-        @average = Assignment.average_percentage
+        @average = Assignment.average_percentage(params[:student_id])
       end
       
     else
