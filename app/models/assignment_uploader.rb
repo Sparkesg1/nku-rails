@@ -1,9 +1,6 @@
 class AssignmentUploader
-  # Allows an admin to upload records from a csv file
-  
-  def self.upload_file(file)
  
-    # Process the contents
+  def self.upload_file(file)
     CSV.foreach(file.path, :headers => true) do |record|
      
       upload_assignment(record)
@@ -13,11 +10,10 @@ class AssignmentUploader
   end
   
   def self.upload_assignment(assignment_array)
-    # Uploads the given assignment or alters existing one
-    email = assignment_array['email']
+    student_id = assignment_array['student_id']
     name = assignment_array['assignment_name']
     
-    student = Student.find_by_email(email)
+    student = Student.find(student_id)
     assignments = Assignment.where("student_id = ? AND name = ?", student.id, name)
     if assignments.size == 0
       assignment = Assignment.new

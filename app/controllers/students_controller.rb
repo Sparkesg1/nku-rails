@@ -72,7 +72,7 @@ class StudentsController < ApplicationController
     file = params[:csv]
     StudentUploader.upload_file(file)
     
-    redirect_to assignments_path, notice: "#{after_count - before_count} Students created."
+    redirect_to assignments_path, notice: " Students created."
   end
 private
   def student_params
