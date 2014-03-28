@@ -58,21 +58,23 @@ class StudentsController < ApplicationController
   def upload
     @current_student = current_user
     if( !@current_student.is_admin? )
-      redirect_to students_path, notice: "Unauthorized!"
+      redirect_to students_path, notice: "Need to be logged in as Administrator"
     end
   end
   
   def process_upload
     @current_student = current_user
     if( !@current_student.is_admin? )
-      redirect_to students_path, notice: "Unauthorized!"
+      redirect_to students_path, notice: "Need to be logged in as Administrator"
     end
     
     require 'csv'
     file = params[:csv]
+    before_count = Students.all.size
     StudentUploader.upload_file(file)
+    after_count = Students.all.size
     
-    redirect_to assignments_path, notice: "Uploaded!"
+    redirect_to assignments_path, notice: "#{after_count - before_count} Students created."
   end
 private
   def student_params

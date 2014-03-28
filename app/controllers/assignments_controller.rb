@@ -51,7 +51,7 @@ class AssignmentsController < ApplicationController
   def process_upload
     @current_student = current_user
     if( !@current_student.is_admin? )
-      redirect_to assignments_path, notice: "Unauthorized!"
+      redirect_to assignments_path, notice: "Need to be logged in as Administrator"
     end
     
     require 'csv'
