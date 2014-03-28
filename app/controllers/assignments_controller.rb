@@ -1,7 +1,4 @@
 class AssignmentsController < ApplicationController
-  def show
-    redirect_to assignments_path
-  end
   
   def index
     @current_student = current_user
@@ -14,44 +11,55 @@ class AssignmentsController < ApplicationController
         @average = Assignment.average_percentage(params[:student_id])
       else
         @assignments = Assignment.all
-        @average = Assignment.average_percentage(params[:student_id])
+        @average = Assignment.average_percentage
       end
       
     else
+      @selected_student = @current_student
       @assignments = @current_student.assignments
-      @average = Assignment.average_percentage(@current_student.id)
+      @average = Assignment.average_percentage(@selected_student.id)
     end
+    
+  end
+
+  def show
+    redirect_to assignments_path
   end
   
   def new
     @current_student = current_user
     if( !@current_student.is_admin? )
       redirect_to students_path, notice: "Unauthorized!"
-    end
-    
+    end    
     @assignment = Assignment.new
-    @students = Student.all
-    
+    @students = Student.all    
   end
   
   def create
-    current_user = current_user
-    if( !current_user || !current_user.is_admin? )
+    current_student = current_user
+    if( !current_student || !current_student.is_admin? )
       redirect_to students_path, notice: "Unauthorized!"
     end
     
     @assignment = Assignment.new(assignment_params)
-    if @assignment.save
-
+    if @assignment.save   
+      redirect_to assignments_path, notice: "Assignment successfully recorded!"
     else
       render 'new'
+    end
+  end
+  
+  def upload
+    @current_student = current_user
+    if( !@current_student.is_admin? )
+      redirect_to assignments_path, notice: "Unauthorized!"
     end
   end
   
   def process_upload
     @current_student = current_user
     if( !@current_student.is_admin? )
-      redirect_to assignments_path, notice: "Need to be logged in as Administrator"
+      redirect_to assignments_path, notice: "Unauthorized!"
     end
     
     require 'csv'
@@ -65,7 +73,7 @@ class AssignmentsController < ApplicationController
   
   private
   def assignment_params
-    params.require(:assignment).permit(:id, :assignment_name, :score, :total, :student_id, :nick_name)
+    params.require(:assignment).permit(:student_id, :assignment_name, :score, :total)
   end
   
 end

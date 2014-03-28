@@ -35,13 +35,6 @@ ActiveRecord::Schema.define(version: 20140307211156) do
     t.datetime "updated_at"
   end
 
-  create_table "posts", force: true do |t|
-    t.string   "title"
-    t.text     "text"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "students", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"

@@ -70,9 +70,7 @@ class StudentsController < ApplicationController
     
     require 'csv'
     file = params[:csv]
-    before_count = Students.all.size
     StudentUploader.upload_file(file)
-    after_count = Students.all.size
     
     redirect_to assignments_path, notice: "#{after_count - before_count} Students created."
   end

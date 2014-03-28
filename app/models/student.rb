@@ -6,8 +6,6 @@ class Student < ActiveRecord::Base
   def self.in_seat(seat, date)
      Student.joins(:attendances).where(attendances: {seat: seat, attended_on: date})
   end  
-
-
   
   def self.present(date)
     student_total = Student.all.size
