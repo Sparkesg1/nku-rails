@@ -48,6 +48,21 @@ class AssignmentsController < ApplicationController
     end
   end
   
+  def process_upload
+    @current_student = current_user
+    if( !@current_student.is_admin? )
+      redirect_to assignments_path, notice: "Unauthorized!"
+    end
+    
+    require 'csv'
+    file = params[:csv]
+    before_count = Assignment.all.size
+    AssignmentUploader.upload_file(file)
+    after_count = Assignment.all.size
+    
+    redirect_to assignments_path, notice: "#{after_count - before_count} assignments created."
+  end
+  
   private
   def assignment_params
     params.require(:assignment).permit(:id, :assignment_name, :score, :total, :student_id, :nick_name)

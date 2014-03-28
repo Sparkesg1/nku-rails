@@ -54,6 +54,26 @@ class StudentsController < ApplicationController
     @current = nil
     redirect_to sessions_path
   end
+  
+  def upload
+    @current_student = current_user
+    if( !@current_student.is_admin? )
+      redirect_to students_path, notice: "Unauthorized!"
+    end
+  end
+  
+  def process_upload
+    @current_student = current_user
+    if( !@current_student.is_admin? )
+      redirect_to students_path, notice: "Unauthorized!"
+    end
+    
+    require 'csv'
+    file = params[:csv]
+    StudentUploader.upload_file(file)
+    
+    redirect_to assignments_path, notice: "Uploaded!"
+  end
 private
   def student_params
     params.require(:student).permit(:first_name, :last_name, :nick_name, :email, :password, :password_confirmation)
